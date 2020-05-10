@@ -58,7 +58,7 @@ def writeData(file, name, data, bpp, palette, index_map):
         if not (ii == pal_len-2):
             file.write(', ')
     file.write('\n};\n')
-    file.write(text.arr_open.format(name, 'data, ', img_size>>(ratio+2)))
+    file.write(text.arr_open.format(name, 'data', img_size>>(ratio+2)))
     for ii in range(0, img_size>>(ratio), 2<<ratio):
         if not (ii % (16<<ratio)):
             file.write('\n\t')
