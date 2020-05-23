@@ -7,3 +7,5 @@ Other programs, like **gfx2gba**, **grit** and **Usenti** absolutely do a better
 The reason behind this software is
  - to convert images created with GIMP, that creates bitmaps marking them as compressed (even in 16bpp mode), not allowing the above programs to process them
  - for my educational purpose, to better understand how both python and the GameBoy Advance works
+
+# DON'T TRUST THIS BAR UP HERE, this project has no C code
