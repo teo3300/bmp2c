@@ -8,22 +8,22 @@ from interpreter import mapColor, imgFlip, translatePalette, warning
 from writer      import writeInfo, writeData
 
 def main_process(path, name, bpp):
-    imageObj = open(path + name, 'rb').read()
+    imageObj = open(path + name, 'rb').read()                                               # Open image file
     name = name.split('.')[0]
-    data = loadData(imageObj)
-  # data_offset, img_size, img_width, img_height
-    palette, index_map, about = mapColor(imageObj, data, bpp)
-    warning(about, name)
-    index_map = imgFlip(index_map, data)
-    palette = translatePalette(palette)
+    data = loadData(imageObj)                                                               # Load image info
+    palette, index_map, about = mapColor(imageObj, data, bpp)                               # Separate color index array and palette array 
+    warning(about, name)                                                                    # Warn about data lost due to limits of 256 entries for 8bpp and 16 for 4bpp
+    index_map = imgFlip(index_map, data)                                                    # :_) BMB images' colors are listed bottom up
+    palette = translatePalette(palette)                                                     # :_) GBA uses BGR while BMP uses RGB
 
-    writeInfo(open('./source/' + name + '.h', 'w+'), name, data, bpp, len(palette))
-    writeData(open('./source/' + name + '.c', 'w+'), name, data, bpp, palette, index_map)
+    writeInfo(open('./source/' + name + '.h', 'w+'), name, data, bpp, len(palette))         # Finally write header info to access array
+    writeData(open('./source/' + name + '.c', 'w+'), name, data, bpp, palette, index_map)   # Finally write array data
 
 def getSys():
     import platform
     return platform.system().lower()
 sysOS = getSys()
+# Determine OS
 
 def mkdir(path):
     dr = command[sysOS]['mkdir'] + ' ' + path
@@ -42,7 +42,8 @@ if( not os.path.isdir(cwd + '8bpp')):
     mkdir(cwd + '8bpp')
 if( not os.path.isdir(cwd + '4bpp')):
     mkdir(cwd + '4bpp')
-
+# Create missing folders
+    
 fold8 = os.listdir(cwd + '8bpp')
 fold4 = os.listdir(cwd + '4bpp')
 
