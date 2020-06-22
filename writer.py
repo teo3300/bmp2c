@@ -31,7 +31,7 @@ def writeInfo(file, name, data, bpp, pal_len):
     file.write(text.define.format(name, 'width',          img_width,           '// Image Width'              ))
     file.write(text.define.format(name, 'height',         img_height,          '// Image Height'             ))
     file.write(text.define.format(name, 'palette_size',   pal_len<<1,          '// Palette Size'             ))
-    file.write(text.define.format(name, 'palette_length', pal_len>>1,          '// Palette Size'             ))
+    file.write(text.define.format(name, 'palette_length', pal_len>>1,          '// Palette SLength'          ))
     file.write(text.ar_def.format(name, 'palette',        name + '_palette_length'                           ))
     file.write(text.ar_def.format(name, 'data',           name + '_length'                                   ))
     file.write('\n\n#endif//'+ name.upper() + '_H')
