@@ -12,6 +12,7 @@ def joint(index_map, ii, bpp):
     for i in range(0, 2<<ratio):
         value = value + (index_map[ii+i]<<(i*bpp))
     return value
+    # Allow to use a 32bit array instead of 8bit (minimum tile is 8x8bit)
 
 def writeInfo(file, name, data, bpp, pal_len):
     img_size   = data[1]
@@ -35,7 +36,8 @@ def writeInfo(file, name, data, bpp, pal_len):
     file.write(text.ar_def.format(name, 'palette',        name + '_palette_length'                           ))
     file.write(text.ar_def.format(name, 'data',           name + '_length'                                   ))
     file.write('\n\n#endif//'+ name.upper() + '_H')
-
+    # List array info
+    
 def writeData(file, name, data, bpp, palette, index_map):
     img_size   = data[1]
     img_width  = data[2]
@@ -66,3 +68,4 @@ def writeData(file, name, data, bpp, palette, index_map):
         if not (ii == ((img_size>>ratio) - 2<<ratio)):
             file.write(', ')
     file.write('\n};\n')
+    # List image data and palette
