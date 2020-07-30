@@ -1,5 +1,5 @@
 # bmp2c
-Python script to convert 16bpp bitmap images in C array, used inside GBA ROMs (many thanks to the [tonc library tutorial](https://www.coranac.com/tonc/text/toc.htm) for all the references for tis and other projects)
+Python script to convert 16bpp bitmap images in C array, used inside GBA ROMs (many thanks to the [tonc library tutorial](https://www.coranac.com/tonc/text/toc.htm) for all the references for this and other projects)
 
 ## This script does not require additional dependencies other than the standard python modules
 Other programs, like **gfx2gba**, **grit** and **Usenti** absolutely do a better job, even allowing to choose between more conversion options
