@@ -1,4 +1,4 @@
-#include "font_test_8bpp_8bpp.h"
+#include "font_test_8bpp.h"
 /*
  * Image:        font_test_8bpp
  * Size:         640

@@ -1,4 +1,4 @@
-#include "font_test_4bpp_4bpp.h"
+#include "font_test_4bpp.h"
 /*
  * Image:        font_test_4bpp
  * Size:         320

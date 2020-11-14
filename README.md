@@ -10,5 +10,9 @@ The reason behind this software is
 
 ## update
  Specify split size in the first parameter to allow 1D tile mode (inzexing tiles), 0: do not split
-
+ Called with parameters (wanted to insert it inside a Makefile):
+ - path to source file
+ - destination folder
+ - bitdepth
+ - splitsize (optional)
 # DON'T TRUST THIS BAR UP HERE, this project has no C code

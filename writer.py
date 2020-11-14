@@ -18,7 +18,7 @@ def joint(index_map, ii, bpp):
         value = value + (index_map[ii+i]<<(i*bpp))
     return value
 
-def writeInfo(file, name, data, bpp, pal_len):
+def writeInfo(file, fullName, data, bpp, pal_len):
     '''Write infos about the data and palette array in an header file'''
     img_size   = data[1]
     img_width  = data[2]
@@ -29,8 +29,6 @@ def writeInfo(file, name, data, bpp, pal_len):
     elif bpp == 4:
         ratio = 2
     # Use bitshift instead of multiplications and divisions
-
-    fullName = name + "_" + str(bpp) + 'bpp'
 
     file.write(text.info.format(fullName, img_size>>ratio, img_width, img_height, pal_len))
     # Commented infos
@@ -50,20 +48,18 @@ def writeInfo(file, name, data, bpp, pal_len):
     # Arrays declaration (exploits previous definitions for size declaration)
     file.write('\n\n#endif//'+ (fullName).upper() + '_H')
 
-def writeData(file, name, data, bpp, palette, index_map):
+def writeData(file, fullName, data, bpp, palette, index_map):
         img_size   = data[1]
         img_width  = data[2]
         img_height = data[3]
         pal_len = len(palette)
-
-        fullName = name + "_" + str(bpp) + 'bpp'
 
         if bpp == 8:
             ratio = 1
         elif bpp == 4:
             ratio = 2
 
-        file.write('#include "'+ fullName + "_" + str(bpp) + 'bpp.h"')
+        file.write('#include "'+ fullName + '.h"')
         file.write(text.info.format(fullName, img_size>>ratio, img_width, img_height, pal_len))
         # Commented infos
         file.write(text.arr_open.format(fullName, 'palette', fullName+'_palette_length'))
