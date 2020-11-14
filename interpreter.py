@@ -26,6 +26,10 @@ def mapColor(mem, data, bpp):
     return (palette, index_map, (lost, evened))
 
 def imgFlip(index_map, data):
+    '''Vertically flip the index map'''
+    # GIMP and the GBA use different ways to store image data:
+    #   GIMP: fisrst line in the file is the lowest one of the image, going up
+    #   GBA:  first line in the array must be the highest one of the image to display it correctly
     reversed = []
     w = data[2]
     h = data[3]
@@ -43,6 +47,17 @@ def translatePalette(old_palette):
         new_color = ((blue<<5)+green<<5)+red
         new_palette.append(new_color)
     return new_palette
+
+def imgSplit(index_map, data, blockSize = 8, skip = 0):
+    imgWidth = data[2]
+    imgHeight = data[3]
+    chunked = []
+    for posY in range(0, imgHeight, blockSize):
+        for posX in range(0, imgWidth, blockSize):
+            for line in range(blockSize):
+                base = ((posY+line)*imgWidth)+posX
+                chunked.extend(index_map[base:base+blockSize])
+    return chunked
 
 def warning(stat, name):
     if stat[0]:
